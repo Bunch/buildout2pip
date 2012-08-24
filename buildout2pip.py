@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# Takes a buildout.cfg file and converts it to a pip-compatible format
+# Created by Hany Fahim <hany@vmfarms.com>
+# Copyright 2012 VM Farms Inc.
+
 import sys
 import ConfigParser
 
