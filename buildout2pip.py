@@ -35,7 +35,7 @@ def main(buildoutcfg):
 
 			# Format the URL properly
 			if url.startswith('git@'):
-				# git@github.com:Bunch/django-tracking.git
+				# git@github.com:MyProject/project.git
 				# git+ssh://git@myproject.org/MyProject/#egg=MyProject
 				(userhost, uri) = url.split(':')
 				url = "git+ssh://%s/%s" % (userhost, uri)
