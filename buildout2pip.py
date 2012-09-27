@@ -7,7 +7,12 @@ import sys
 import ConfigParser
 
 
-def main(buildoutcfg):
+def main():
+    try:
+        buildoutcfg = sys.argv[1]
+    except:
+        buildoutcfg = "buildout.cfg"
+
     config = ConfigParser.ConfigParser()
     config.read(buildoutcfg)
 
@@ -62,8 +67,4 @@ def main(buildoutcfg):
             print "%s==%s" % (egg, eggs[egg])
 
 if __name__ == "__main__":
-    try:
-        buildoutcfg = sys.argv[1]
-    except:
-        buildoutcfg = "buildout.cfg"
-    main(buildoutcfg)
+    main()

@@ -1,0 +1,10 @@
+# Test venv
+.Python
+bin/
+include/
+lib/
+buildout2pip.egg-info/
+
+# Vim / python
+*.swp
+*.pyc
