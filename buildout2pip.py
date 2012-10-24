@@ -12,7 +12,10 @@ def main():
         buildoutcfg = sys.argv[1]
     except:
         buildoutcfg = "buildout.cfg"
+    convert(buildoutcfg)
 
+
+def convert(buildoutcfg):
     config = ConfigParser.ConfigParser()
     config.read(buildoutcfg)
 
