@@ -12,10 +12,10 @@ def main():
         buildoutcfg = sys.argv[1]
     except:
         buildoutcfg = "buildout.cfg"
-    convert(buildoutcfg)
+    convert(buildoutcfg, sys.stdout)
 
 
-def convert(buildoutcfg):
+def convert(buildoutcfg, piprequirement):
     config = ConfigParser.ConfigParser()
     config.read(buildoutcfg)
 
@@ -63,11 +63,11 @@ def convert(buildoutcfg):
     # Putting it all together
     for egg in eggs:
         if eggs[egg].startswith('-e'):
-            print eggs[egg]
+            piprequirement.write(eggs[egg] + "\n")
         elif eggs[egg] == '':
-            print egg
+            piprequirement.write(egg + "\n")
         else:
-            print "%s==%s" % (egg, eggs[egg])
+            piprequirement.write("%s==%s\n" % (egg, eggs[egg]))
 
 if __name__ == "__main__":
     main()
