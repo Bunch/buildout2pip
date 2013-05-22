@@ -18,6 +18,7 @@ def main():
 
 def convert(buildoutcfg, piprequirement):
     config = ConfigParser.RawConfigParser()
+    config.optionxform = str  # Package names are case-sensitive
     config.read([buildoutcfg])
 
     # We only support one level of nesting, but this is enough
