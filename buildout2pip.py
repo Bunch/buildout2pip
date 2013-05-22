@@ -23,7 +23,10 @@ def convert(buildoutcfg, piprequirement):
 
     # We only support one level of nesting, but this is enough
     # to use an autmatically updated versions file
-    extended = config.get('buildout', 'extends')
+    try:
+        extended = config.get('buildout', 'extends')
+    except ConfigParser.NoOptionError:
+        extended = None
     if extended:
         extended = os.path.join(os.path.dirname(buildoutcfg), extended)
         config.read([buildoutcfg, extended])
