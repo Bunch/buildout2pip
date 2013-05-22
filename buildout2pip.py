@@ -3,6 +3,7 @@
 # Created by Hany Fahim <hany@vmfarms.com>
 # Copyright 2012 VM Farms Inc.
 
+import os
 import sys
 import ConfigParser
 
@@ -16,8 +17,15 @@ def main():
 
 
 def convert(buildoutcfg, piprequirement):
-    config = ConfigParser.ConfigParser()
-    config.read(buildoutcfg)
+    config = ConfigParser.RawConfigParser()
+    config.read([buildoutcfg])
+
+    # We only support one level of nesting, but this is enough
+    # to use an autmatically updated versions file
+    extended = config.get('buildout', 'extends')
+    if extended:
+        extended = os.path.join(os.path.dirname(buildoutcfg), extended)
+        config.read([buildoutcfg, extended])
 
     # First get list of eggs
     temp_eggs = config.get('eggs', 'eggs').split('\n')
